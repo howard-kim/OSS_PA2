@@ -1,0 +1,64 @@
+import 'dart:async';
+
+import 'package:drum/1_main/drum_simulation.dart';
+// import 'package:flame_audio/audio_pool.dart';
+import 'package:flame_audio/flame_audio.dart';
+
+import 'package:flame/components.dart';
+import 'package:flame/events.dart';
+
+class DrumParts extends SpriteComponent
+    with TapCallbacks, HasGameReference<DrumSimulation> {
+  static late double partsSize;
+
+  DrumParts({
+    required this.text,
+    required this.action,
+    super.anchor = Anchor.center,
+
+    // required Color borderColor,
+    // required Color color,
+    // required Sprite partSprite,
+  });
+
+  final String text;
+  final void Function() action;
+  // late AudioPool pool;
+
+  @override
+  Future<void> onLoad() async {
+    partsSize = game.canvasSize.x / 7;
+    size = Vector2.all(partsSize);
+
+    await FlameAudio.audioCache.load('parts_sound/$text.wav');
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    partsSize = game.canvasSize.x;
+    super.onGameResize(size);
+  }
+
+  @override
+  void onTapDown(TapDownEvent event) {
+    scale = Vector2.all(1.1);
+    // add(ColorEffect(Colors.white, const Offset(0.0, 0.8),
+    //     EffectController(duration: 0.01, infinite: false)));
+    FlameAudio.play('parts_sound/$text.wav');
+  }
+
+  @override
+  void onTapUp(TapUpEvent event) {
+    scale = Vector2.all(1.0);
+    // add(ColorEffect(Colors.white, const Offset(0.8, 0.0),
+    //     EffectController(duration: 0.01, infinite: false)));
+    action();
+  }
+
+  @override
+  void onTapCancel(TapCancelEvent event) {
+    scale = Vector2.all(1.0);
+    // add(ColorEffect(Colors.white, const Offset(0.8, 0.0),
+    //     EffectController(duration: 0.01, infinite: false)));
+  }
+}
