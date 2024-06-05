@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:drum/2_beat_game/beat_game.dart';
 import 'package:drum/2_beat_game/beat_game_screen.dart';
-import 'package:drum/2_beat_game/game_components/rounded_button.dart';
+import 'package:drum/2_beat_game/game_components/small_components/rounded_button.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';

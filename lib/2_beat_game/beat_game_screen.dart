@@ -1,5 +1,5 @@
 import 'package:drum/2_beat_game/beat_game.dart';
-import 'package:drum/2_beat_game/game_components/pause_widget.dart';
+import 'package:drum/2_beat_game/game_components/small_components/pause_widget.dart';
 import 'package:flame/game.dart';
 
 import 'package:flutter/material.dart';

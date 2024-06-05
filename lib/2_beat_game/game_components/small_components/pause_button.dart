@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:drum/2_beat_game/beat_game.dart';
-import 'package:drum/2_beat_game/game_components/simple_button.dart';
+import 'package:drum/2_beat_game/game_components/small_components/simple_button.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/rendering.dart';
 
