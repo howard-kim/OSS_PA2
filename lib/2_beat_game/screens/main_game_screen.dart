@@ -9,6 +9,7 @@ import 'package:drum/2_beat_game/game_components/pause_button.dart';
 import 'package:drum/2_beat_game/game_components/score.dart';
 import 'package:drum/2_beat_game/screens/score_screen.dart';
 import 'package:drum/models/beat_timeline.dart';
+import 'package:drum/models/input_drum_timeline.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
@@ -164,7 +165,60 @@ class MainGameScreen extends Component
         if (timeOfGame > gameOver + 3) {
           print(testScore);
           ref.read(recordTimeProvider.notifier).reset();
-          add(GameScore(ref: ref, score: testScore, level: level));
+
+          int cnt = 0;
+          int total = (examBeats120bpm.hat.length +
+              examBeats120bpm.kick.length +
+              examBeats120bpm.snare.length);
+
+          for (int i = 0; i < examBeats120bpm.hat.length; i++) {
+            for (int j = 0;
+                j < ref.read(inputDrumProvider.notifier).state.hat.length;
+                j++) {
+              ref.read(inputDrumProvider.notifier).state.hat[j] -=
+                  examBeats120bpm.hat[i];
+            }
+            for (int j = 0;
+                j < ref.read(inputDrumProvider.notifier).state.hat.length;
+                j++) {
+              if (ref.read(inputDrumProvider.notifier).state.hat[j] < 0.05) {
+                cnt++;
+              }
+            }
+          }
+          for (int i = 0; i < examBeats120bpm.snare.length; i++) {
+            for (int j = 0;
+                j < ref.read(inputDrumProvider.notifier).state.snare.length;
+                j++) {
+              ref.read(inputDrumProvider.notifier).state.snare[j] -=
+                  examBeats120bpm.snare[i];
+            }
+            for (int j = 0;
+                j < ref.read(inputDrumProvider.notifier).state.snare.length;
+                j++) {
+              if (ref.read(inputDrumProvider.notifier).state.snare[j] < 0.05) {
+                cnt++;
+              }
+            }
+          }
+          for (int i = 0; i < examBeats120bpm.kick.length; i++) {
+            for (int j = 0;
+                j < ref.read(inputDrumProvider.notifier).state.kick.length;
+                j++) {
+              ref.read(inputDrumProvider.notifier).state.kick[j] -=
+                  examBeats120bpm.kick[i];
+            }
+            for (int j = 0;
+                j < ref.read(inputDrumProvider.notifier).state.kick.length;
+                j++) {
+              if (ref.read(inputDrumProvider.notifier).state.kick[j] < 0.05) {
+                cnt++;
+              }
+            }
+          }
+
+          add(GameScore(
+              ref: ref, score: (cnt * 100 / cnt) as int, level: level));
           isGameScoreCalled = true;
           // print(inputDrum.kick);
           // removeFromParent();
@@ -296,6 +350,12 @@ class MainGameScreen extends Component
     crash: [100],
     ride: [100],
   );
+
+  // int score(List<double> user, List<double> answer) {
+  //   int score = 0;
+
+  //   return score;
+  // }
   /////////점수 용 드럼 연주 기록
 
   // BeatTimeline inputDrum = BeatTimeline(
