@@ -51,7 +51,10 @@ flutter pub get
 flutter run
 ```
 
-
+## 실행 예시
+![Game Screenshot](assets/images/screenshot.png)
+![Game Screenshot](assets/images/screenshot1.png)
+![Game Screenshot](assets/images/screenshot2.png)
  
 This project is a starting point for a Flutter application.
 
