@@ -2,11 +2,12 @@ import 'package:drum/2_beat_game/beat_game.dart';
 import 'package:drum/2_beat_game/beat_game_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PauseWidget extends StatefulWidget {
-  const PauseWidget(this.thisGame, {super.key});
+  const PauseWidget(this.thisGame, {super.key, required this.ref});
   final BeatGame thisGame;
-
+  final WidgetRef ref;
   @override
   State<PauseWidget> createState() => _PauseWidgetState();
 }
@@ -80,6 +81,7 @@ class _PauseWidgetState extends State<PauseWidget> {
                           MaterialPageRoute(
                             builder: (BuildContext context) => BeatGameScreen(
                               level: widget.thisGame.level,
+                              ref: widget.ref,
                             ),
                           ),
                         );

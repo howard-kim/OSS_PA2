@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:drum/0_splash/splash_screen.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -15,11 +16,11 @@ void main() {
   );
 
   runApp(
-    MaterialApp(
-      title: "Drum Simulator",
-      theme: ThemeData(fontFamily: 'ABeeZee'),
-      home: const Scaffold(
-        body: Splash(),
+    ProviderScope(
+      child: MaterialApp(
+        title: "Drum Simulator",
+        theme: ThemeData(fontFamily: 'ABeeZee'),
+        home: const Scaffold(body: Splash()),
       ),
     ),
   );

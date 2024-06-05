@@ -6,11 +6,13 @@ import 'package:flame/events.dart';
 import 'package:flame_lottie/flame_lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SplashScreen extends PositionComponent
     with TapCallbacks, HasGameReference<BeatGame> {
-  SplashScreen(this.level);
+  SplashScreen(this.level, this.ref);
   final int level;
+  final WidgetRef ref;
   TextComponent splashText = TextComponent(
     text: 'Ready? Touch the Screen to get Started',
     textRenderer: TextPaint(
@@ -95,7 +97,7 @@ class SplashScreen extends PositionComponent
     print('splash -- tap up');
     // game.router.pushNamed('main');
     game.remove(this);
-    game.add(MainGameScreen(level));
+    game.add(MainGameScreen(level, ref));
     print("did splash call main");
     // removeFromParent();
   }

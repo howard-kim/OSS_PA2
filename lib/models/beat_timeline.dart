@@ -106,4 +106,28 @@ class BeatTimeline {
     // result = this;
     return result;
   }
+
+  BeatTimeline copyWith({
+    List<double>? kick,
+    List<double>? snare,
+    List<double>? rim,
+    List<double>? tomHigh,
+    List<double>? tomMid,
+    List<double>? tomLow,
+    List<double>? hat,
+    List<double>? crash,
+    List<double>? ride,
+  }) {
+    return BeatTimeline(
+      kick: kick ?? this.kick,
+      snare: snare ?? this.snare,
+      rim: rim ?? this.rim,
+      tomHigh: tomHigh ?? this.tomHigh,
+      tomMid: tomMid ?? this.tomMid,
+      tomLow: tomLow ?? this.tomLow,
+      hat: hat ?? this.hat,
+      crash: crash ?? this.crash,
+      ride: ride ?? this.ride,
+    );
+  }
 }

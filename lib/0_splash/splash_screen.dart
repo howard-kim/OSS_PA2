@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:drum/1_main/main_screen.dart';
@@ -31,7 +32,7 @@ class _SplashState extends State<Splash> {
         setState(() {
           _isVidEnded = true;
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => const MainScreen()));
+              builder: (BuildContext context) => MainScreen()));
         });
       },
     );
@@ -59,7 +60,7 @@ class _SplashState extends State<Splash> {
         GestureDetector(onTap: () {
           if (_isVidEnded) {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => const MainScreen()));
+                builder: (BuildContext context) => MainScreen()));
           }
         }),
       ],

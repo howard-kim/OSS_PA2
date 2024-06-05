@@ -2,15 +2,17 @@ import 'package:drum/2_beat_game/screens/splash_screen.dart';
 import 'package:flame/game.dart';
 
 import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BeatGame extends FlameGame {
-  BeatGame({required this.level});
+  BeatGame({required this.level, required this.ref});
   final int level;
+  final WidgetRef ref;
   late final RouterComponent router;
 
   @override
   Future<void> onLoad() async {
-    add(SplashScreen(level));
+    add(SplashScreen(level, ref));
     // add(GameScore(score: 100, level: 3));
   }
 

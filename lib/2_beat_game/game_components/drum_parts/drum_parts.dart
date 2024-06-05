@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:drum/2_beat_game/beat_game.dart';
-import 'package:drum/2_beat_game/screens/main_game_screen.dart';
+import 'package:drum/2_beat_game/game_components/game_time_provider.dart';
+
+import 'package:drum/models/input_drum_timeline.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DrumParts extends SpriteComponent
     with TapCallbacks, CollisionCallbacks, HasGameReference<BeatGame> {
@@ -23,6 +26,7 @@ class DrumParts extends SpriteComponent
     "ride"
   ];
   DrumParts({
+    required this.ref,
     required this.partsName,
     super.anchor = Anchor.bottomCenter,
   });
@@ -30,6 +34,8 @@ class DrumParts extends SpriteComponent
   final String partsName;
   late double aU;
   late double partsSize;
+
+  final WidgetRef ref;
 
   @override
   Future<void> onLoad() async {
@@ -74,7 +80,10 @@ class DrumParts extends SpriteComponent
       ),
     );
     FlameAudio.play('parts_sound/${partsName.toLowerCase()}.wav');
-    game.record(partsName);
+    ref
+        .read(inputDrumProvider.notifier)
+        .addBeat(partsName, ref.read(recordTimeProvider.notifier).state);
+
     // print("=======" + text);
   }
 

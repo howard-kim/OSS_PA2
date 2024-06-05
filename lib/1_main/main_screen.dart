@@ -1,4 +1,3 @@
-import 'package:drum/0_splash/splash_screen.dart';
 import 'package:drum/1_main/drum_simulation.dart';
 import 'package:drum/widgets/game_level_widget.dart';
 
@@ -6,12 +5,13 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom],
@@ -21,7 +21,10 @@ class MainScreen extends StatelessWidget {
         child: GameWidget<DrumSimulation>(
           game: DrumSimulation(),
           overlayBuilderMap: {
-            'game': (context, game) => GameLevelWidget(game),
+            'game': (context, game) => GameLevelWidget(
+                  game,
+                  ref: ref,
+                ),
           },
         ),
       ),

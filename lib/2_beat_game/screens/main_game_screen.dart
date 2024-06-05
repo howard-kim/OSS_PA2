@@ -4,16 +4,19 @@ import 'package:drum/2_beat_game/game_components/drum_parts/drum_kit.dart';
 import 'package:drum/2_beat_game/beat_game.dart';
 import 'package:drum/2_beat_game/game_components/beat.dart';
 import 'package:drum/2_beat_game/game_components/game_background.dart';
+import 'package:drum/2_beat_game/game_components/game_time_provider.dart';
 import 'package:drum/2_beat_game/game_components/pause_button.dart';
 import 'package:drum/models/beat_timeline.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MainGameScreen extends Component
     with HasGameReference<BeatGame>, HasCollisionDetection {
-  MainGameScreen(this.level);
+  MainGameScreen(this.level, this.ref);
   final int level;
+  final WidgetRef ref;
   late BeatTimeline gameSong;
   late double aU;
   late TextComponent levelText = TextComponent(
@@ -32,7 +35,7 @@ class MainGameScreen extends Component
     onTick: () {
       // print(level);
       timeOfGame = double.parse(timeOfGame.toStringAsFixed(2));
-      print('${timeOfGame.truncate()} sec');
+      print('${ref.read(recordTimeProvider).truncate()} sec');
       // print('${timeOfGame} sec');
       switch (timeOfGame) {
         case -3:
@@ -149,20 +152,22 @@ class MainGameScreen extends Component
         add(Beat(Vector2(aU * 9, 0), level));
       }
       // addBeats(examBeats120bpm, timeOfGame);
-      // double gameOver = whenToFinishGame(examBeats120bpm);
-      // if (timeOfGame == gameOver) {
-      //   // testScore = score(boolsForGrade);
-      // }
-      // // print(isGameScoreCalled);
-      // if (isGameScoreCalled == false) {
-      //   if (timeOfGame > gameOver + 3) {
-      //     print(testScore);
-      //     isGameScoreCalled = true;
-      //     print(inputDrum.kick);
-      //     // removeFromParent();
-      //   }
+      double gameOver = whenToFinishGame(examBeats120bpm);
+      if (timeOfGame == gameOver) {
+        // testScore = score(boolsForGrade);
+      }
+      // print(isGameScoreCalled);
+      if (isGameScoreCalled == false) {
+        //   if (timeOfGame > gameOver + 3) {
+        print(testScore);
+        isGameScoreCalled = true;
+        // print(inputDrum.kick);
+        // removeFromParent();
+      }
       timeOfGame += 0.01; //1 / 60;
-      recogTime += 0.01;
+      // ref.read(timeOfGameProvider.notifier).state += 0.01;
+      ref.read(recordTimeProvider.notifier).state += 0.01;
+
       // }
     },
   );
@@ -189,40 +194,17 @@ class MainGameScreen extends Component
 
   /////////점수 용 드럼 연주 기록
 
-  BeatTimeline inputDrum = BeatTimeline(
-    kick: [],
-    snare: [],
-    rim: [],
-    tomHigh: [],
-    tomMid: [],
-    tomLow: [],
-    hat: [],
-    crash: [],
-    ride: [],
-  );
-
-  void record(String partName) {
-    switch (partName) {
-      case "kick":
-        inputDrum.kick.add(recogTime);
-      case "snare":
-        inputDrum.snare.add(recogTime);
-      case "rim":
-        inputDrum.rim.add(recogTime);
-      case "tom":
-        inputDrum.kick.add(recogTime);
-      case "kick":
-        inputDrum.kick.add(recogTime);
-      case "kick":
-        inputDrum.kick.add(recogTime);
-      case "kick":
-        inputDrum.kick.add(recogTime);
-      case "kick":
-        inputDrum.kick.add(recogTime);
-      case "kick":
-        inputDrum.kick.add(recogTime);
-    }
-  }
+  // BeatTimeline inputDrum = BeatTimeline(
+  //   kick: [],
+  //   snare: [],
+  //   rim: [],
+  //   tomHigh: [],
+  //   tomMid: [],
+  //   tomLow: [],
+  //   hat: [],
+  //   crash: [],
+  //   ride: [],
+  // );
 
   int testScore = -1;
 
@@ -242,7 +224,7 @@ class MainGameScreen extends Component
 
   @override
   Future<void> onLoad() async {
-    mainDrum = DrumKit();
+    mainDrum = DrumKit(ref: ref);
     aU = game.canvasSize.x / 10;
     // gameSong = examBeats120bpm.levelControll(level);
     gameSong = examBeats120bpm;
@@ -293,6 +275,7 @@ class MainGameScreen extends Component
   @override
   void onRemove() {
     print("=========main removed=========");
+
     super.onRemove();
   }
 }
@@ -300,15 +283,15 @@ class MainGameScreen extends Component
 double whenToFinishGame(BeatTimeline beats) {
   double when = 0.0;
 
-  // when = max(when, beats.crash[beats.crash.length - 2]);
+  when = max(when, beats.crash[beats.crash.length - 2]);
   when = max(when, beats.hat[beats.hat.length - 2]);
   when = max(when, beats.kick[beats.kick.length - 2]);
-  // when = max(when, beats.ride[beats.ride.length - 2]);
-  // when = max(when, beats.rim[beats.rim.length - 2]);
+  when = max(when, beats.ride[beats.ride.length - 2]);
+  when = max(when, beats.rim[beats.rim.length - 2]);
   when = max(when, beats.snare[beats.snare.length - 2]);
-  // when = max(when, beats.tomLow[beats.tomLow.length - 2]);
-  // when = max(when, beats.tomMid[beats.tomMid.length - 2]);
-  // when = max(when, beats.tomHigh[beats.tomHigh.length - 2]);
+  when = max(when, beats.tomLow[beats.tomLow.length - 2]);
+  when = max(when, beats.tomMid[beats.tomMid.length - 2]);
+  when = max(when, beats.tomHigh[beats.tomHigh.length - 2]);
 
   return when + 1.0;
 }

@@ -2,11 +2,13 @@ import 'package:drum/1_main/drum_simulation.dart';
 import 'package:drum/2_beat_game/beat_game_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GameLevelWidget extends StatelessWidget {
-  const GameLevelWidget(this.game, {super.key});
+  const GameLevelWidget(this.game, {super.key, required this.ref});
 
   final DrumSimulation game;
+  final WidgetRef ref;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +47,9 @@ class GameLevelWidget extends StatelessWidget {
                       onPressed: () {
                         game.overlays.remove("game");
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const BeatGameScreen(
+                            builder: (BuildContext context) => BeatGameScreen(
                                   level: 1,
+                                  ref: ref,
                                 )));
                       },
                       style: ElevatedButton.styleFrom(
@@ -73,9 +75,9 @@ class GameLevelWidget extends StatelessWidget {
                       onPressed: () {
                         game.overlays.remove("game");
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const BeatGameScreen(
+                            builder: (BuildContext context) => BeatGameScreen(
                                   level: 2,
+                                  ref: ref,
                                 )));
                       },
                       style: ElevatedButton.styleFrom(
@@ -99,9 +101,9 @@ class GameLevelWidget extends StatelessWidget {
                       onPressed: () {
                         game.overlays.remove("game");
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const BeatGameScreen(
+                            builder: (BuildContext context) => BeatGameScreen(
                                   level: 3,
+                                  ref: ref,
                                 )));
                       },
                       style: ElevatedButton.styleFrom(
