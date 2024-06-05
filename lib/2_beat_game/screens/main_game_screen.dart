@@ -165,60 +165,66 @@ class MainGameScreen extends Component
         if (timeOfGame > gameOver + 3) {
           print(testScore);
           ref.read(recordTimeProvider.notifier).reset();
+          ;
 
           int cnt = 0;
           int total = (examBeats120bpm.hat.length +
               examBeats120bpm.kick.length +
               examBeats120bpm.snare.length);
+          List<double> tmp = [];
 
           for (int i = 0; i < examBeats120bpm.hat.length; i++) {
             for (int j = 0;
                 j < ref.read(inputDrumProvider.notifier).state.hat.length;
                 j++) {
-              ref.read(inputDrumProvider.notifier).state.hat[j] -=
-                  examBeats120bpm.hat[i];
+              tmp.add(ref.read(inputDrumProvider.notifier).state.hat[j] -
+                  examBeats120bpm.hat[i]);
             }
             for (int j = 0;
                 j < ref.read(inputDrumProvider.notifier).state.hat.length;
                 j++) {
-              if (ref.read(inputDrumProvider.notifier).state.hat[j] < 0.05) {
+              if (tmp[j] < 0.01) {
                 cnt++;
               }
             }
+            tmp = [];
           }
           for (int i = 0; i < examBeats120bpm.snare.length; i++) {
             for (int j = 0;
                 j < ref.read(inputDrumProvider.notifier).state.snare.length;
                 j++) {
-              ref.read(inputDrumProvider.notifier).state.snare[j] -=
-                  examBeats120bpm.snare[i];
+              tmp.add(ref.read(inputDrumProvider.notifier).state.snare[j] -
+                  examBeats120bpm.snare[i]);
             }
             for (int j = 0;
                 j < ref.read(inputDrumProvider.notifier).state.snare.length;
                 j++) {
-              if (ref.read(inputDrumProvider.notifier).state.snare[j] < 0.05) {
+              if (tmp[j] < 0.01) {
                 cnt++;
               }
             }
+            tmp = [];
           }
           for (int i = 0; i < examBeats120bpm.kick.length; i++) {
             for (int j = 0;
                 j < ref.read(inputDrumProvider.notifier).state.kick.length;
                 j++) {
-              ref.read(inputDrumProvider.notifier).state.kick[j] -=
-                  examBeats120bpm.kick[i];
+              tmp.add(ref.read(inputDrumProvider.notifier).state.kick[j] -
+                  examBeats120bpm.kick[i]);
             }
             for (int j = 0;
                 j < ref.read(inputDrumProvider.notifier).state.kick.length;
                 j++) {
-              if (ref.read(inputDrumProvider.notifier).state.kick[j] < 0.05) {
+              if (tmp[j] < 0.01) {
                 cnt++;
               }
             }
+            tmp = [];
           }
-
-          add(GameScore(
-              ref: ref, score: (cnt * 100 / cnt) as int, level: level));
+          ref.read(inputDrumProvider.notifier).reset();
+          print("-------------------------------------------------------");
+          print(cnt);
+          add(GameScore(ref: ref, score: (cnt / total).toInt(), level: level));
           isGameScoreCalled = true;
           // print(inputDrum.kick);
           // removeFromParent();

@@ -34,20 +34,20 @@ class InputDrumNotifier extends StateNotifier<BeatTimeline> {
       ride: type == 'ride' ? [...state.ride, time] : state.ride,
     );
     print('$type tapped at $time');
+  }
 
-    void reset() {
-      state = BeatTimeline(
-        kick: [],
-        snare: [],
-        rim: [],
-        tomHigh: [],
-        tomMid: [],
-        tomLow: [],
-        hat: [],
-        crash: [],
-        ride: [],
-      );
-      print('Input drum reset');
-    }
+  void reset() {
+    state = BeatTimeline(
+      kick: [],
+      snare: [],
+      rim: [],
+      tomHigh: [],
+      tomMid: [],
+      tomLow: [],
+      hat: [],
+      crash: [],
+      ride: [],
+    );
+    print('Input drum reset');
   }
 }
