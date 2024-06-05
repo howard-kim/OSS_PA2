@@ -1,3 +1,4 @@
+import 'package:drum/2_beat_game/splash_screen.dart';
 import 'package:flame/game.dart';
 
 import 'package:flutter/rendering.dart';
@@ -9,7 +10,7 @@ class BeatGame extends FlameGame {
 
   @override
   Future<void> onLoad() async {
-    // add(SplashScreen(level));
+    add(SplashScreen(level));
     // add(GameScore(score: 100, level: 3));
   }
 

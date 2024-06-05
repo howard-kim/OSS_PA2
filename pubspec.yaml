@@ -93,6 +93,7 @@ flutter:
 
     # Lottie Assets
     - assets/lotties/game_icon.json
+    - assets/lotties/rhythm.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
