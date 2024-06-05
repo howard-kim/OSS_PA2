@@ -1,4 +1,5 @@
 import 'package:drum/1_main/drum_simulation.dart';
+import 'package:drum/2_beat_game/beat_game_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +44,11 @@ class GameLevelWidget extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         game.overlays.remove("game");
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const BeatGameScreen(
+                                  level: 1,
+                                )));
                       },
                       style: ElevatedButton.styleFrom(
                         side: const BorderSide(
@@ -66,6 +72,11 @@ class GameLevelWidget extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         game.overlays.remove("game");
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const BeatGameScreen(
+                                  level: 2,
+                                )));
                       },
                       style: ElevatedButton.styleFrom(
                         side: const BorderSide(
@@ -87,6 +98,11 @@ class GameLevelWidget extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         game.overlays.remove("game");
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const BeatGameScreen(
+                                  level: 3,
+                                )));
                       },
                       style: ElevatedButton.styleFrom(
                         side: const BorderSide(
