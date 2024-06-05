@@ -25,6 +25,8 @@ class DrumPartsRecognition extends PositionComponent
         color: const Color.fromARGB(193, 243, 229, 33),
         fontSize: game.canvasSize.x / 20,
         fontFamily: "ABeeZee",
+        wordSpacing: 2,
+        letterSpacing: 9,
         decoration: TextDecoration.combine(
           [TextDecoration.overline],
         ),
