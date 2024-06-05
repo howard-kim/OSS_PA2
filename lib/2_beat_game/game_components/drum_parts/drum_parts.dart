@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:drum/2_beat_game/beat_game.dart';
+import 'package:drum/2_beat_game/screens/main_game_screen.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
@@ -67,12 +68,13 @@ class DrumParts extends SpriteComponent
     add(
       ColorEffect(
         Colors.white,
-        opacityTo: 0.0,
-        opacityFrom: 0.8,
+        opacityTo: 1.0,
+        opacityFrom: 0.0,
         EffectController(duration: 0.01, infinite: false),
       ),
     );
     FlameAudio.play('parts_sound/${partsName.toLowerCase()}.wav');
+    game.record(partsName);
     // print("=======" + text);
   }
 

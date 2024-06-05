@@ -188,6 +188,7 @@ class MainGameScreen extends Component
   );
 
   /////////점수 용 드럼 연주 기록
+
   BeatTimeline inputDrum = BeatTimeline(
     kick: [],
     snare: [],
@@ -199,6 +200,29 @@ class MainGameScreen extends Component
     crash: [],
     ride: [],
   );
+
+  void record(String partName) {
+    switch (partName) {
+      case "kick":
+        inputDrum.kick.add(recogTime);
+      case "snare":
+        inputDrum.snare.add(recogTime);
+      case "rim":
+        inputDrum.rim.add(recogTime);
+      case "tom":
+        inputDrum.kick.add(recogTime);
+      case "kick":
+        inputDrum.kick.add(recogTime);
+      case "kick":
+        inputDrum.kick.add(recogTime);
+      case "kick":
+        inputDrum.kick.add(recogTime);
+      case "kick":
+        inputDrum.kick.add(recogTime);
+      case "kick":
+        inputDrum.kick.add(recogTime);
+    }
+  }
 
   int testScore = -1;
 
