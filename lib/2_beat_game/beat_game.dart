@@ -1,4 +1,4 @@
-import 'package:drum/2_beat_game/splash_screen.dart';
+import 'package:drum/2_beat_game/screens/splash_screen.dart';
 import 'package:flame/game.dart';
 
 import 'package:flutter/rendering.dart';

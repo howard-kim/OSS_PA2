@@ -91,9 +91,13 @@ flutter:
     - assets/audio/parts_sound/tomlow.wav
     - assets/audio/parts_sound/tommid.wav
 
+    # Game
+    - assets/images/game/beat.png
+
     # Lottie Assets
     - assets/lotties/game_icon.json
     - assets/lotties/rhythm.json
+    - assets/lotties/background.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

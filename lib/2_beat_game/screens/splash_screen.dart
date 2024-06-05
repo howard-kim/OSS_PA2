@@ -1,4 +1,5 @@
 import 'package:drum/2_beat_game/beat_game.dart';
+import 'package:drum/2_beat_game/screens/main_game_screen.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
@@ -94,7 +95,7 @@ class SplashScreen extends PositionComponent
     print('splash -- tap up');
     // game.router.pushNamed('main');
     game.remove(this);
-    // game.add(MainGameScreen(level));
+    game.add(MainGameScreen(level));
     print("did splash call main");
     // removeFromParent();
   }
