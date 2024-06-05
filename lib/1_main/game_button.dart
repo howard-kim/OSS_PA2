@@ -49,6 +49,7 @@ class GameButton extends PositionComponent
         EffectController(duration: 0.1, reverseDuration: 0.1),
       ),
     ]);
+    game.overlays.add("game");
 
     super.onTapDown(event);
   }
