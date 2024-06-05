@@ -52,8 +52,11 @@ flutter run
 ```
 
 ## 실행 예시
+### 메인 화면
 ![Game Screenshot](assets/images/screenshot.png)
+### 게임 플레이 화면
 ![Game Screenshot](assets/images/screenshot1.png)
+### 점수 화면
 ![Game Screenshot](assets/images/screenshot2.png)
  
 This project is a starting point for a Flutter application.
