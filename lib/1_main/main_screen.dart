@@ -1,3 +1,4 @@
+import 'package:drum/0_splash/splash_screen.dart';
 import 'package:drum/1_main/drum_simulation.dart';
 
 import 'package:flame/game.dart';
@@ -19,13 +20,10 @@ class MainScreen extends StatelessWidget {
         child: GameWidget<DrumSimulation>(
           game: DrumSimulation(),
           overlayBuilderMap: {
-            // 'putChannel': (context, game) => WhereToCallWidget(game),
-            // 'game': (context, game) => GameLevelWidget(game),
+            'game': (context, game) => Splash(),
           },
         ),
       ),
-      // drawer: const LeftDrawer(),
-      // endDrawer: const LeftDrawer(),
     );
   }
 }

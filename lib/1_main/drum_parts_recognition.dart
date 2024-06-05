@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:drum/1_main/drum_parts/drum_kit.dart';
 import 'package:drum/1_main/drum_simulation.dart';
+import 'package:drum/1_main/game_button.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 
-const String appId = "c17e83b482844f599ba02172d21b9178";
+// const String appId = "c17e83b482844f599ba02172d21b9178";
 
 class DrumPartsRecognition extends PositionComponent
     with HasGameReference<DrumSimulation> {
@@ -13,6 +14,7 @@ class DrumPartsRecognition extends PositionComponent
   bool _shown = false;
 
   late DrumKit mainDrum; //드럼키트 전체
+  late GameButton gameButton; //게임 버튼
 
   late TextComponent mainText = TextComponent(
     anchor: Anchor.center,
@@ -52,6 +54,7 @@ class DrumPartsRecognition extends PositionComponent
   void onMount() {
     mainText.position = Vector2(game.canvasSize.x / 2, game.canvasSize.y / 7);
     mainDrum = DrumKit();
+    gameButton = GameButton(eraseDrum: eraseDrum);
     super.onMount();
   }
 
@@ -62,7 +65,7 @@ class DrumPartsRecognition extends PositionComponent
         [
           mainDrum,
           // callButton,
-          // gameButton,
+          gameButton,
         ],
       );
       // initPlugin();
