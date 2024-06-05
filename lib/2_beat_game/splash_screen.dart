@@ -1,4 +1,5 @@
 import 'package:drum/2_beat_game/beat_game.dart';
+import 'package:drum/2_beat_game/main_game_screen.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
