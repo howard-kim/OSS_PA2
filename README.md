@@ -59,6 +59,21 @@ flutter run
 ### 점수 화면
 ![Game Screenshot](assets/images/screenshot2.png)
  
+## Peer를 위해 남겨두는 개선 사항 밑 한계점
+- 시간이 더 있었다면 곡 DB를 더 만들어 곡 선택이 가능케 했을 것
+- Refactoring이 더 됐다면 좋았을 것
+- 점수 계산이 조금 더 명확했다면 좋았을 것
+
+## Code
+Flutter & Dart에 친숙하더라도 Flame에 대한 상당한 이해가 필요한 작업이라 시간이 꽤나 걸립니다.
+디렉토리 정리가 직관적으로 되어 있기 때문에 코드를 찾아 읽는 것을 어렵지 않을 것 입니다. 하지만 질문이 있다면 이메일을 남겨주십시오.
+docong0120@gmail.com
+
+참고해야할 주요 코드는 main_game_screen.dart입니다.
+
+
+
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
