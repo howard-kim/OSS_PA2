@@ -111,8 +111,8 @@ class DrumParts extends SpriteComponent
     add(
       ColorEffect(
         Colors.white,
-        opacityTo: 0.0,
-        opacityFrom: 0.8,
+        opacityTo: 0.8,
+        opacityFrom: 0.0,
         EffectController(
           duration: 0.1,
           reverseDuration: 0.1,

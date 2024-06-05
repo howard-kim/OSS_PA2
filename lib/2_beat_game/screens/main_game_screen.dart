@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:drum/2_beat_game/game_components/drum_parts/drum_kit.dart';
 import 'package:drum/2_beat_game/beat_game.dart';
 import 'package:drum/2_beat_game/game_components/beat.dart';
+import 'package:drum/2_beat_game/game_components/game_background.dart';
+import 'package:drum/2_beat_game/game_components/pause_button.dart';
 import 'package:drum/models/beat_timeline.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
@@ -23,9 +25,7 @@ class MainGameScreen extends Component
   bool isGameScoreCalled = false;
 
   late DrumKit mainDrum; //메인드럼키트 초기화
-  // PositionComponent hitLine = PositionComponent();
 
-  // final hitLine = Path();
   late TimerComponent realTimer = TimerComponent(
     period: 0.01, //1 / 60,
     repeat: true,
@@ -217,12 +217,6 @@ class MainGameScreen extends Component
     );
 
   @override
-  void onMount() {
-    // mainDrum = DrumKit();
-    super.onMount();
-  }
-
-  @override
   Future<void> onLoad() async {
     mainDrum = DrumKit();
     aU = game.canvasSize.x / 10;
@@ -251,8 +245,8 @@ class MainGameScreen extends Component
     }
     addAll(
       {
-        // GameBackGround(),
-        // PauseButton(),
+        GameBackGround(),
+        PauseButton(),
         mainDrum,
         realTimer,
       },

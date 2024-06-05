@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:drum/2_beat_game/beat_game.dart';
+import 'package:drum/2_beat_game/game_components/drum_parts/drum_parts.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
@@ -52,5 +53,16 @@ class Beat extends SpriteComponent
   void onRemove() {
     print("비트 삭제");
     super.onRemove();
+  }
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is DrumParts) {
+      print("beat떨어짐");
+      removeFromParent();
+    } else {
+      super.onCollisionStart(intersectionPoints, other);
+    }
   }
 }
