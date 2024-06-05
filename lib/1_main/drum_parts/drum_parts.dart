@@ -46,7 +46,7 @@ class DrumParts extends SpriteComponent
     scale = Vector2.all(1.1);
     add(
       ColorEffect(
-        Colors.white,
+        const Color.fromARGB(193, 243, 229, 33),
         EffectController(duration: 0.01, infinite: false),
         opacityFrom: 0,
         opacityTo: 0.8,
@@ -60,7 +60,7 @@ class DrumParts extends SpriteComponent
     scale = Vector2.all(1.0);
     add(
       ColorEffect(
-        Colors.white,
+        const Color.fromARGB(193, 243, 229, 33),
         EffectController(
           duration: 0.01,
           infinite: false,
@@ -77,7 +77,7 @@ class DrumParts extends SpriteComponent
     scale = Vector2.all(1.0);
     add(
       ColorEffect(
-        Colors.white,
+        const Color.fromARGB(193, 243, 229, 33),
         EffectController(duration: 0.01, infinite: false),
         opacityTo: 0.0,
       ),

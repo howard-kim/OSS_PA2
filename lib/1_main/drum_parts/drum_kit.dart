@@ -24,7 +24,7 @@ class DrumKit extends PositionComponent with HasGameReference<DrumSimulation> {
   @override
   Future<void> onLoad() async {
     // print("is it called");
-    position = Vector2(game.canvasSize.x / 2 + 54, game.canvasSize.y / 2);
+    position = Vector2(game.canvasSize.x / 2 + 24, game.canvasSize.y / 2);
     alignUnit = game.canvasSize.x / 25;
     await addAll(
       {

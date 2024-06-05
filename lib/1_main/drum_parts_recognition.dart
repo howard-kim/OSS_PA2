@@ -21,8 +21,8 @@ class DrumPartsRecognition extends PositionComponent
     ..textRenderer = TextPaint(
       style: TextStyle(
         color: const Color.fromARGB(193, 243, 229, 33),
-        fontSize: game.canvasSize.x / 23,
-        fontFamily: "Lobster",
+        fontSize: game.canvasSize.x / 20,
+        fontFamily: "ABeeZee",
         decoration: TextDecoration.combine(
           [TextDecoration.overline],
         ),
@@ -50,7 +50,7 @@ class DrumPartsRecognition extends PositionComponent
 
   @override
   void onMount() {
-    mainText.position = Vector2(game.canvasSize.x / 2, game.canvasSize.y / 5);
+    mainText.position = Vector2(game.canvasSize.x / 2, game.canvasSize.y / 7);
     mainDrum = DrumKit();
     super.onMount();
   }
@@ -87,7 +87,7 @@ class DrumPartsRecognition extends PositionComponent
 
   @override
   void render(Canvas canvas) {
-    canvas.drawColor(const Color.fromARGB(255, 102, 17, 171), BlendMode.srcIn);
+    canvas.drawColor(const Color.fromARGB(255, 25, 3, 63), BlendMode.srcIn);
     super.render(canvas);
   }
 }

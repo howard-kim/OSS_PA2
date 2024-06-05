@@ -17,7 +17,7 @@ void main() {
   runApp(
     MaterialApp(
       title: "Drum Simulator",
-      theme: ThemeData(fontFamily: 'Lobster'),
+      theme: ThemeData(fontFamily: 'ABeeZee'),
       home: const Scaffold(
         body: Splash(),
       ),
