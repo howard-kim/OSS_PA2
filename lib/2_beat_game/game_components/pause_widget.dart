@@ -1,5 +1,6 @@
 import 'package:drum/2_beat_game/beat_game.dart';
 import 'package:drum/2_beat_game/beat_game_screen.dart';
+import 'package:drum/2_beat_game/game_components/game_time_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -76,6 +77,7 @@ class _PauseWidgetState extends State<PauseWidget> {
                     ElevatedButton(
                       onPressed: () {
                         widget.thisGame.overlays.remove("pause");
+                        widget.ref.read(recordTimeProvider.notifier).reset();
                         Navigator.of(context).pop();
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -105,6 +107,7 @@ class _PauseWidgetState extends State<PauseWidget> {
                       onPressed: () {
                         widget.thisGame.overlays.remove("pause");
                         Navigator.of(context).pop();
+                        widget.ref.read(recordTimeProvider.notifier).reset();
 
                         // Navigator.of(context).push(MaterialPageRoute(
                         //     builder: (BuildContext context) => BeatGameScreen(

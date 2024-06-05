@@ -7,6 +7,7 @@ import 'package:drum/2_beat_game/game_components/game_background.dart';
 import 'package:drum/2_beat_game/game_components/game_time_provider.dart';
 import 'package:drum/2_beat_game/game_components/pause_button.dart';
 import 'package:drum/2_beat_game/game_components/score.dart';
+import 'package:drum/2_beat_game/screens/score_screen.dart';
 import 'package:drum/models/beat_timeline.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
@@ -156,20 +157,22 @@ class MainGameScreen extends Component
       double gameOver = whenToFinishGame(examBeats120bpm, ref);
       if (timeOfGame == gameOver) {
         testScore = score(boolsForGrade);
-        ref.read(recordTimeProvider.notifier).reset();
+        // ref.read(recordTimeProvider.notifier).reset();
       }
-      print(isGameScoreCalled);
+      // print(isGameScoreCalled);
       if (isGameScoreCalled == false) {
-        //   if (timeOfGame > gameOver + 3) {
-        print(testScore);
-        isGameScoreCalled = true;
-        // print(inputDrum.kick);
-        removeFromParent();
+        if (timeOfGame > gameOver + 3) {
+          print(testScore);
+          ref.read(recordTimeProvider.notifier).reset();
+          add(GameScore(ref: ref, score: testScore, level: level));
+          isGameScoreCalled = true;
+          // print(inputDrum.kick);
+          // removeFromParent();
+        }
+        timeOfGame += 0.01; //1 / 60;
+        // ref.read(timeOfGameProvider.notifier).state += 0.01;
+        ref.read(recordTimeProvider.notifier).state += 0.01;
       }
-      timeOfGame += 0.01; //1 / 60;
-      // ref.read(timeOfGameProvider.notifier).state += 0.01;
-      ref.read(recordTimeProvider.notifier).state += 0.01;
-
       // }
     },
   );
@@ -359,7 +362,7 @@ class MainGameScreen extends Component
       },
     );
     // add(levelText);
-    boolsForGrade.setFalse(gameSong);
+    // boolsForGrade.setFalse(gameSong);
 
     print("main loaded");
     return super.onLoad();

@@ -80,9 +80,10 @@ class DrumParts extends SpriteComponent
       ),
     );
     FlameAudio.play('parts_sound/${partsName.toLowerCase()}.wav');
-    ref
-        .read(inputDrumProvider.notifier)
-        .addBeat(partsName, ref.read(recordTimeProvider.notifier).state);
+    double tmptime = double.parse(
+        ref.read(recordTimeProvider.notifier).state.toStringAsFixed(2));
+
+    ref.read(inputDrumProvider.notifier).addBeat(partsName, tmptime);
 
     // print("=======" + text);
   }
