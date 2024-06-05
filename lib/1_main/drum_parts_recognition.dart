@@ -90,11 +90,4 @@ class DrumPartsRecognition extends PositionComponent
     canvas.drawColor(const Color.fromARGB(255, 102, 17, 171), BlendMode.srcIn);
     super.render(canvas);
   }
-
-  @override
-  void onRemove() {
-    super.onRemove();
-    // _recorderStatus.cancel();
-    // _audioStream.cancel();
-  }
 }
